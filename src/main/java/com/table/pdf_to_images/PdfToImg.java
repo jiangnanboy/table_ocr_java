@@ -17,7 +17,7 @@ import java.nio.file.Paths;
 public class PdfToImg {
 
     public static void main(String[] args) throws IOException {
-        pdfToImg("E:/idea_project/paddleocr-java/img_test/sci_data.pdf","png");
+        pdfToImg("D:/project/idea_workspace/table_ocr_java/img_test/sci_data.pdf","png");
     }
 
     /**
