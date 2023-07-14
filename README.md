@@ -1,8 +1,8 @@
-                ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-                TABLE DETECTION IN IMAGES AND OCR TO CSV WITH JAVA
-
-                                    Yan Shi
-                ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                                                ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                                                     TABLE DETECTION IN IMAGES AND OCR TO CSV WITH JAVA
+                                
+                                                                    Yan Shi
+                                                ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 # Guide
 1.  [Overview](#Overview)
@@ -105,6 +105,8 @@ can be chained together to create the entire workflow.
 1、github：https://github.com/jiangnanboy
 
 2、QQ:2229029156
+
+3、Email:2229029156@qq.com
 
 # Reference
 
