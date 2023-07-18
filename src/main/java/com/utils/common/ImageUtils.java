@@ -347,5 +347,17 @@ public class ImageUtils {
         return (int) (y * h + y1);
     }
 
+    public static float[] whc2cwh(float[] src) {
+        float[] chw = new float[src.length];
+        int j = 0;
+        for (int ch = 0; ch < 3; ++ch) {
+            for (int i = ch; i < src.length; i += 3) {
+                chw[j] = src[i];
+                j++;
+            }
+        }
+        return chw;
+    }
+
 }
 
