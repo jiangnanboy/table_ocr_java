@@ -92,6 +92,7 @@ The package is split into modules with narrow focuses.
 
 -   `pdf_to_images` uses pdfbox to extract images from a PDF.
 -   `extract_tables` finds and extracts table-looking things from an image.
+-   `extract_tables_dnn` finds and extracts table-looking things from an image by deep learning model.
 -   `extract_cells` extracts and orders cells from a table.
 -   `ocr_image` uses djl to OCR the text from an image of a cell.
 -   `ocr_to_csv` converts into a CSV the directory structure that `ocr_image` outputs.
