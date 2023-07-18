@@ -117,3 +117,5 @@ https://github.com/deepjavalibrary/djl
 
 https://github.com/jiangnanboy/java-springboot-paddleocr
 
+https://github.com/jiangnanboy/layout_analysis4j
+
