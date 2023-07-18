@@ -6,6 +6,7 @@ import ai.djl.translate.TranslateException;
 import com.table.ocr_image.TextListBox;
 import com.utils.common.CollectionUtil;
 import org.bytedeco.opencv.opencv_core.Mat;
+import org.opencv.imgcodecs.Imgcodecs;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -14,7 +15,6 @@ import java.util.List;
 import java.util.Optional;
 
 import static com.table.extract_cells.ExtractCell.extractCells;
-import static com.table.extract_tables.ExtractTable.extractTables;
 import static com.table.ocr_image.OcrImage.ocrImage;
 import static com.table.ocr_to_csv.OcrToCsv.ocrToCsv;
 import static org.bytedeco.opencv.global.opencv_imgcodecs.imread;
@@ -25,11 +25,17 @@ import static org.bytedeco.opencv.global.opencv_imgcodecs.imwrite;
  * @date 2023/7/12 20:08
  */
 public class MainDemo {
+
     public static void main(String...args) throws IOException, TranslateException {
         String imagePath = "D:/project/idea_workspace/table_ocr_java/img_test/simple.png";
-        Mat imageMat = imread(imagePath);
         // 1.extract tables
-        List<Mat> resultList = extractTables(imageMat);
+        boolean useDnn = false;
+        List<Mat> tableList = null;
+        if(useDnn) {
+            tableList = extractTableDnn(imagePath);
+        } else {
+            tableList = extractTable(imagePath);
+        }
         String imageName = Paths.get(imagePath).getFileName().toString().split("\\.")[0];
         String imageParent = Paths.get(imagePath).getParent().toString();
         String imageDirectory  = imageParent + "/" + imageName;
@@ -38,7 +44,7 @@ public class MainDemo {
         System.out.println("imageDirectory: " + imageDirectory);
         createImageDirectory(imageDirectory);
         int tableNum=0;
-        for(Mat tableMat : resultList) {
+        for(Mat tableMat : tableList) {
             String tableMatNum = "table-"+tableNum;
             imwrite(imageDirectory + "/" + tableMatNum + ".png", tableMat);
             createImageDirectory(imageDirectory+"/"+tableMatNum);
@@ -68,6 +74,28 @@ public class MainDemo {
                 ocrToCsv(resultCell, imageDirectory + "/" + tableMatNum + ".csv");
             }
         }
+    }
+
+    /**
+     * extract tables from image by opencv
+     * @param imgPath
+     * @return
+     */
+    public static List<Mat> extractTable(String imgPath) {
+        Mat imageMat = imread(imgPath);
+        List<Mat> tableList = com.table.extract_tables.ExtractTable.extractTables(imageMat);
+        return tableList;
+    }
+
+    /**
+     * extract tables from image by dnn
+     * @param imgPath
+     * @return
+     */
+    public static List<Mat> extractTableDnn(String imgPath) {
+        org.opencv.core.Mat img = Imgcodecs.imread(imgPath);
+        List<Mat> tableList = com.table.extract_tables_dnn.ExtractTable.extractTables(img);
+        return tableList;
     }
 
     public static void createImageDirectory(String imageDirectory) throws IOException {
